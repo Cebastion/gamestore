@@ -1,25 +1,29 @@
 {
   "files": {
-    "main.css": "/gamestore/static/css/main.27cc3be1.css",
-    "main.js": "/gamestore/static/js/main.4bdac5b4.js",
+    "main.css": "/gamestore/static/css/main.70aa3239.css",
+    "main.js": "/gamestore/static/js/main.b941946f.js",
     "static/media/WoW.jpg": "/gamestore/static/media/WoW.acf298a133c67ceb2a0c.jpg",
     "static/media/spider.webp": "/gamestore/static/media/spider.99387a3e69f2e4eb9f94.webp",
     "static/media/stalker.webp": "/gamestore/static/media/stalker.5ca68b10fbfd2a4f30e4.webp",
+    "static/media/detfc.webp": "/gamestore/static/media/detfc.ff1bfe1041d4e6b4195a.webp",
     "static/media/horizon.webp": "/gamestore/static/media/horizon.9c979543c64169f18bf2.webp",
     "static/media/gta.webp": "/gamestore/static/media/gta.13b9dff1b60af7587ed8.webp",
     "static/media/skyrim.jpg": "/gamestore/static/media/skyrim.eb3d415e7a18986e4064.jpg",
+    "static/media/mb.jpg": "/gamestore/static/media/mb.75ffe8b7d5635757052e.jpg",
     "static/media/red.jpg": "/gamestore/static/media/red.79ef29b96a9f2f67b368.jpg",
+    "static/media/fz.jpg": "/gamestore/static/media/fz.457dd43cdee5e6de3dc0.jpg",
+    "static/media/rev.jpg": "/gamestore/static/media/rev.3c3a5a44ae2e5f4908c7.jpg",
     "static/media/little.jpg": "/gamestore/static/media/little.a7023386bd1775e12bf2.jpg",
     "static/media/payback.jpg": "/gamestore/static/media/payback.0ab5fc6d6b455ff705e1.jpg",
     "static/media/avatar.jpg": "/gamestore/static/media/avatar.0da1fc8d3a51a1fa82d3.jpg",
     "static/media/favorite.svg": "/gamestore/static/media/favorite.e1cd6a9144659caecbe5384f016fcde4.svg",
     "index.html": "/gamestore/index.html",
     "static/media/bascket.svg": "/gamestore/static/media/bascket.287e70bcb24b99bd6facad3ebbef68ea.svg",
-    "main.27cc3be1.css.map": "/gamestore/static/css/main.27cc3be1.css.map",
-    "main.4bdac5b4.js.map": "/gamestore/static/js/main.4bdac5b4.js.map"
+    "main.70aa3239.css.map": "/gamestore/static/css/main.70aa3239.css.map",
+    "main.b941946f.js.map": "/gamestore/static/js/main.b941946f.js.map"
   },
   "entrypoints": [
-    "static/css/main.27cc3be1.css",
-    "static/js/main.4bdac5b4.js"
+    "static/css/main.70aa3239.css",
+    "static/js/main.b941946f.js"
   ]
 }
