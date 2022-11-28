@@ -1,5 +1,7 @@
+
+
 export default function Game(props) {
-    const {game} = props;
+    const {game} = props
     return ( 
         <div className="product__block">
             <div className="block__image">
@@ -15,9 +17,6 @@ export default function Game(props) {
                 <div className="block__price">
                     <span>${game.price}</span>
                 </div>
-                <button className="block__button">
-                    <span>Buy</span>
-                </button>
             </div>
         </div>
     );

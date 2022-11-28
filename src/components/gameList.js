@@ -6,6 +6,11 @@ import little from '../img/little.jpg';
 import red from '../img/red.jpg';
 import payback from '../img/payback.jpg';
 import horizon from '../img/horizon.webp';
+import fz from '../img/fz.jpg';
+import mb from '../img/mb.jpg';
+import rev from '../img/rev.jpg';
+import detfc from '../img/detfc.webp';
+
 
 const gamelist = [
     {
@@ -38,7 +43,7 @@ const gamelist = [
     },
     {
         name: 'Little Nightmares 2',
-        price: 45,
+        price: 43,
         image: little,
         tag: ['All', 'Adventure'],
         platform: ['PC', ' ', 'PS5'],
@@ -59,11 +64,39 @@ const gamelist = [
     },
     {
         name: 'Horizon Zero Dawn Complete Edition',
-        price: 60,
+        price: 69,
         image: horizon,
         tag: ['All', 'Action', 'Adventure', 'RPG'],
         platform: ['PC', ' ', 'PS4', ' ', 'PS5'],
-    }
+    },
+    {
+        name: 'Resident Evil 8 Village',
+        price: 25,
+        image: rev,
+        tag: ['All', 'Action'],
+        platform: ['PC', ' ', 'PS4'],
+    },
+    {
+        name: 'Forza Horizon 5',
+        price: 30,
+        image: fz,
+        tag: ['All', 'Racing', 'Arcade'],
+        platform: ['PC', ' ', 'PS4'],
+    },
+    {
+        name: 'Mount & Blade 2 Bannerlord',
+        price: 20,
+        image: mb,
+        tag: ['All', 'Action', 'RPG'],
+        platform: ['PC'],
+    },
+    {
+        name: 'Disco Elysium The Final Cut',
+        price: 48,
+        image: detfc,
+        tag: ['All', 'Action', 'RPG'],
+        platform: ['PC'],
+    },
 ]
 
 export default gamelist;

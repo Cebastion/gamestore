@@ -1,6 +1,7 @@
 import mainImg from "../img/WoW.jpg";
 import Game from "../components/Game";
 
+
 function Product({filterData}) {
     return ( 
     <div className="content__product">
