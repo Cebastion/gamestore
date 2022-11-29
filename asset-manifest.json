@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/gamestore/static/css/main.70aa3239.css",
+    "main.css": "/gamestore/static/css/main.3c87a2d0.css",
     "main.js": "/gamestore/static/js/main.b941946f.js",
     "static/media/WoW.jpg": "/gamestore/static/media/WoW.acf298a133c67ceb2a0c.jpg",
     "static/media/spider.webp": "/gamestore/static/media/spider.99387a3e69f2e4eb9f94.webp",
@@ -19,11 +19,11 @@
     "static/media/favorite.svg": "/gamestore/static/media/favorite.e1cd6a9144659caecbe5384f016fcde4.svg",
     "index.html": "/gamestore/index.html",
     "static/media/bascket.svg": "/gamestore/static/media/bascket.287e70bcb24b99bd6facad3ebbef68ea.svg",
-    "main.70aa3239.css.map": "/gamestore/static/css/main.70aa3239.css.map",
+    "main.3c87a2d0.css.map": "/gamestore/static/css/main.3c87a2d0.css.map",
     "main.b941946f.js.map": "/gamestore/static/js/main.b941946f.js.map"
   },
   "entrypoints": [
-    "static/css/main.70aa3239.css",
+    "static/css/main.3c87a2d0.css",
     "static/js/main.b941946f.js"
   ]
 }
