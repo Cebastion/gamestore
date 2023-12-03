@@ -4,4 +4,6 @@ constructor(){}
 PostGames(){}
 
 GetGames(){}
+
+ConvertValue(){}
 }
