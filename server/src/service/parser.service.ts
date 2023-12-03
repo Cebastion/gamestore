@@ -1,3 +1,3 @@
-function Post games(){}
+function Postgames(){}
 
 function GetGames(){}
