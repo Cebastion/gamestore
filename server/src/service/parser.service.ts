@@ -1,3 +1,7 @@
-function Postgames(){}
+export class ParserService {
+constructor(){}
 
-function GetGames(){}
+PostGames(){}
+
+GetGames(){}
+}
