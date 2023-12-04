@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import ParserService from '/service/parser.service.ts';
 
 const app = express();
 const port = 5500;
