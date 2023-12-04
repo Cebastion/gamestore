@@ -1,4 +1,4 @@
-export class ParserService {
+export default class ParserService {
 constructor(){}
 
 PostGames(){}
