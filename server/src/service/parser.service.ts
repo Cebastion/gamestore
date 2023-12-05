@@ -12,7 +12,7 @@ export default class ParserService {
       if(res.status === 200){
         const $ = cheerio.load(res.data)
         const getTitle = $('/html/body/div[3]/div[1]/main/div[14]/section/div[2]/div[1]/div/div/ul[1]/li[1]/div').text()
-    const games = JSON.stringify(inf);
+    const games = JSON.stringify(getTitle);
 fs.writeFileSync(`./json/games.json`, games);
         console.log(getTitle)
         return getTitle
