@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio'
 import axios from 'axios';
+import fs from 'fs'; 
 
 export default class ParserService {
   private URL = 'https://www.g2a.com/';
