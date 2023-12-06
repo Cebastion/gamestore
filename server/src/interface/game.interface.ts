@@ -1,7 +1,12 @@
-export default interface Game {
+interface Game {
     Image: string;
     Name: string;
-    Platform: [string];
     Tag: [string];
     Price: number;
 }
+
+interface Games {
+    games: Game[];
+}
+
+export { Game, Games }

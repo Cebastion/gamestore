@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 import ParserService from './service/parser.service';
-import Game from './interface/game.interface';
 
 const app = express();
 const port = 5500;
