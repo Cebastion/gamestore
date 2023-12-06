@@ -1,19 +1,23 @@
 import * as cheerio from 'cheerio'
-import axios from 'axios';
-import fs from 'fs'; 
+import axios from 'axios'
+import fs from 'fs'
 
 export default class ParserService {
-  private URL = 'https://www.g2a.com/';
+  private URL = 'https://www.instant-gaming.com/ru/';
 
   PostGames() { }
 
-  GetGames() { 
+  GetGames() {
     axios.get(this.URL).then(res => {
-      if(res.status === 200){
+      if (res.status === 200) {
         const $ = cheerio.load(res.data)
-        const getTitle = $('/html/body/div[3]/div[1]/main/div[14]/section/div[2]/div[1]/div/div/ul[1]/li[1]/div').text()
-    const games = JSON.stringify(getTitle);
-fs.writeFileSync(`./json/games.json`, games);
+        const getTitle = $('body > div.main-content > div > div.products-trending > div.listing-items.listing-slider > div:nth-child(1) > div > div.text > div > span').text()
+        const directory = './json'
+        if (!fs.existsSync(directory)) {
+          fs.mkdirSync(directory)
+        }
+        const games = JSON.stringify(getTitle)
+        fs.writeFileSync(`./json/games.json`, games)
         console.log(getTitle)
         return getTitle
       }
