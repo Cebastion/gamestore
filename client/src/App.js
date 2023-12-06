@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import gamelist from "./components/gameList";
 import mainImg from "./img/WoW.jpg";
 import Game from "./components/Game";
@@ -10,9 +10,15 @@ import List from "./components/List";
 
 
 function App () {
-  const [filterData, setFilter] = useState(gamelist);
+  const [filterData, setFilter] = useState([]);
   const [cardOpen, setCardOpen] = useState(false);
   const [active, Setactive] = useState(false);
+
+  useEffect(() => {
+    axios.get('http://localhost:5500').then(res => {
+      setFilter(res.data)
+    })
+  }, [])
 
   const [value, setValue] = useState('');
   const [values, setValues] = useState('');
