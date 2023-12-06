@@ -10,6 +10,7 @@ export default class ParserService {
   private max_count_genre = 3
   private regex = /([^\s,]+)/
   private sourceElement = ('https://images.gog-statics.com/45a284386e693f1576b96d98a0023a7905d3956c6f9aa913d3fe5d09a5994bee_product_tile_extended_432x243.webp')
+  private list_genre = []
 
   PostGames() { }
 
@@ -30,6 +31,8 @@ export default class ParserService {
               const $ = cheerio.load(product.data)
               for (let count_genre = 0; index < max_count_genre; count_genre++) {
                 const genre_product = $(`body > div.layout.ng-scope > div:nth-child(9) > div.layout-side-col > div:nth-child(3) > div.details.table.table--without-border.ng-scope > div:nth-child(1) > div.details__content.table__row-content > a:nth-child(${count_genre})`).text()
+                list_genre.push(genre_product)
+              }
               const directory = '/json'
               if (!fs.existsSync(directory)) {
                 fs.mkdirSync(directory)
@@ -37,7 +40,7 @@ export default class ParserService {
               let game: Game = {
                 Image: url_image_product;
                 Name: name_product;
-                Tag: [genre_product];
+                Tag: [list_genre];
                 Price: price_product;
               }
               const games: Games = {
@@ -47,7 +50,6 @@ export default class ParserService {
               fs.writeFileSync(`/json/games.json`, games_json)
               console.log(games)
               return games
-              }
             }
           })
           }
