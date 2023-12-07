@@ -2,12 +2,12 @@ interface Game {
     Image: string;
     Name: string;
     Tag: string[];
-    Price: number;
+    Price: string;
 }
 
 interface Games {
     games: {
-        game: Game
+        game: Game[]
     };
 }
 

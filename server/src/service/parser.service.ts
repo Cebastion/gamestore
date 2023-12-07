@@ -10,7 +10,11 @@ export default class ParserService {
   private max_count_genre = 3
   private regex = /([^\s,]+)/
   private list_genre: string[] = []
-  private games = []
+  private game_list: Games = {
+    games: {
+      game: []
+    }
+  }
 
   GetGames() {
     for (let page = 0; page < this.max_count_page; page++) {
@@ -32,12 +36,9 @@ export default class ParserService {
                 if (product.status === 200) {
                   const $ = cheerio.load(product.data)
                   for (let count_genre = 0; count_genre < this.max_count_genre; count_genre++) {
-                    const genre_product = $(`body > div.layout.ng-scope > div:nth-child(9) > div.layout-side-col > div:nth-child(3) > div.details.table.table--without-border.ng-scope > div:nth-child(1) > div.details__content.table__row-content > a:nth-child(${count_genre})`).text()
+                    const genre_product = $(`body > div.layout.ng-scope > div:nth-child(9) > div.layout-side-col > div:nth-child(3) > div.details.table.table--without-border.ng-scope > div:nth-child(1) > div.details__content.table__row-content > a`).text()
                     this.list_genre.push(genre_product)
-                  }
-                  const directory = './dist/json'
-                  if (!fs.existsSync(directory)) {
-                    fs.mkdirSync(directory)
+                    console.log(this.list_genre)
                   }
                 }
               })
@@ -45,20 +46,23 @@ export default class ParserService {
             let game: Game = {
               Image: url_image_product || '',
               Name: name_product,
-              Tag: this.list_genre,
-              Price: parseInt(price_product),
+              Tag: [...this.list_genre],
+              Price: price_product,
             }
-            this.games.push(game)
+            this.game_list.games.game.push(game)
+            this.list_genre = []
           }
+          const games_json = JSON.stringify(this.game_list)
+          const directory = './dist/json/'
+          if (!fs.existsSync(directory)) {
+            fs.mkdirSync(directory)
+          }
+          fs.writeFileSync(`./dist/json/games.json`, games_json)
         } else {
           console.error("Error parser")
           return 0
         }
       })
     }
-    const games_json = JSON.stringify(this.games)
-    fs.writeFileSync(`./dist/json/games.json`, games_json)
-    console.log(this.games)
-    return this.games
   }
 }

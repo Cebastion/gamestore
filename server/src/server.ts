@@ -6,7 +6,8 @@ const port = 5500;
 
 app.get('/', (req: Request, res: Response) => {
   const parserService = new ParserService();
-  res.send(parserService.GetGames())
+  parserService.GetGames()
+  res.send("Warhammer")
 })
 
 app.listen(port, () => {
