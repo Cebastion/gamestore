@@ -1,12 +1,14 @@
 interface Game {
     Image: string;
     Name: string;
-    Tag: [string];
+    Tag: string[];
     Price: number;
 }
 
 interface Games {
-    games: Game[];
+    games: {
+        game: Game
+    };
 }
 
 export { Game, Games }

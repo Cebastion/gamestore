@@ -6,7 +6,7 @@ import { Game, Games } from "../interface/game.interface"
 export default class ParserService {
   private URL = 'https://www.gog.com/en/games'
   private max_count_page = 1
-  private max_count_product = 1
+  private max_count_product = 3
   private max_count_genre = 3
   private regex = /([^\s,]+)/
   private list_genre: string[] = []
@@ -34,25 +34,21 @@ export default class ParserService {
                     const genre_product = $(`body > div.layout.ng-scope > div:nth-child(9) > div.layout-side-col > div:nth-child(3) > div.details.table.table--without-border.ng-scope > div:nth-child(1) > div.details__content.table__row-content > a:nth-child(${count_genre})`).text()
                     this.list_genre.push(genre_product)
                   }
-                  const directory = './json'
+                  const directory = './dist/json'
                   if (!fs.existsSync(directory)) {
                     fs.mkdirSync(directory)
                   }
-                  let game: Game = {
-                    Image: url_image_product || '',
-                    Name: name_product,
-                    Tag: [this.list_genre[0]],
-                    Price: parseInt(price_product),
-                  }
-                  const games: Games = {
-                    games: [game]
-                  }
-                  const games_json = JSON.stringify(games)
-                  fs.writeFileSync(`./json/games.json`, games_json)
-                  console.log(games)
-                  return games
                 }
               })
+            }
+            let game: Game = {
+              Image: url_image_product || '',
+              Name: name_product,
+              Tag: this.list_genre,
+              Price: parseInt(price_product),
+            }
+            const games: Games = {
+              games: game_list
             }
           }
         } else {
@@ -61,5 +57,9 @@ export default class ParserService {
         }
       })
     }
+    const games_json = JSON.stringify(games)
+    fs.writeFileSync(`./dist/json/games.json`, games_json)
+    console.log(games)
+    return games
   }
 }
