@@ -10,6 +10,7 @@ export default class ParserService {
   private max_count_genre = 3
   private regex = /([^\s,]+)/
   private list_genre: string[] = []
+  private games = []
 
   GetGames() {
     for (let page = 0; page < this.max_count_page; page++) {
@@ -47,9 +48,7 @@ export default class ParserService {
               Tag: this.list_genre,
               Price: parseInt(price_product),
             }
-            const games: Games = {
-              games: game_list
-            }
+            this.games.push(game)
           }
         } else {
           console.error("Error parser")
@@ -57,9 +56,9 @@ export default class ParserService {
         }
       })
     }
-    const games_json = JSON.stringify(games)
+    const games_json = JSON.stringify(this.games)
     fs.writeFileSync(`./dist/json/games.json`, games_json)
-    console.log(games)
-    return games
+    console.log(this.games)
+    return this.games
   }
 }
