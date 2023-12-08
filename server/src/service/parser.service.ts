@@ -38,10 +38,11 @@ export default class ParserService {
       fs.mkdirSync(directory)
     }
     fs.writeFileSync(`./dist/json/games.json`, games_json)
+    return games_json
   }
 
-  async GetGames() {
-    for (let page = 1; page <= this.max_count_page; page++) {
+  async GetGames(page: number) {
+    if (page <= this.max_count_page) {
       await axios.get(this.URL + `?page=${page}`).then(async html => {
         if (html.status === 200) {
           const $ = cheerio.load(html.data)
@@ -60,12 +61,15 @@ export default class ParserService {
             }
             this.game_list.games.game.push(game)
           }
-          this.WriteFileJson(this.game_list)
+          const game_json = this.WriteFileJson(this.game_list)
+          return game_json
         } else {
           console.error("Error parser")
           return 0
         }
       })
+    } else {
+      return "Error page"
     }
   }
 }
