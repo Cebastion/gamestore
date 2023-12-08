@@ -16,6 +16,22 @@ export default class ParserService {
     }
   }
 
+  private GetGenreGame(url: string) {
+    if (url) {
+      axios.get(url).then(html => {
+        if (html.status === 200) {
+          const $ = cheerio.load(html.data)
+          const genre_product = $(`div.details__content.table__row-content a`).map((index, element) => $(element).text())
+          this.list_genre.push(...genre_product)
+          console.log(this.list_genre)
+          return this.list_genre
+        }
+      })
+    } else {
+      return 0
+    }
+  }
+
   GetGames() {
     for (let page = 0; page < this.max_count_page; page++) {
       axios.get(this.URL + `?page=${page}`).then(html => {
@@ -31,18 +47,7 @@ export default class ParserService {
             console.log(name_product)
             console.log(price_product)
             console.log(url_image_product)
-            if (link_page_product) {
-              axios.get(link_page_product).then(product => {
-                if (product.status === 200) {
-                  const $ = cheerio.load(product.data)
-                  for (let count_genre = 0; count_genre < this.max_count_genre; count_genre++) {
-                    const genre_product = $(`body > div.layout.ng-scope > div:nth-child(9) > div.layout-side-col > div:nth-child(3) > div.details.table.table--without-border.ng-scope > div:nth-child(1) > div.details__content.table__row-content > a`).text()
-                    this.list_genre.push(genre_product)
-                    console.log(this.list_genre)
-                  }
-                }
-              })
-            }
+            this.GetGenreGame(link_page_product || '')
             let game: Game = {
               Image: url_image_product || '',
               Name: name_product,
@@ -50,7 +55,6 @@ export default class ParserService {
               Price: price_product,
             }
             this.game_list.games.game.push(game)
-            this.list_genre = []
           }
           const games_json = JSON.stringify(this.game_list)
           const directory = './dist/json/'
