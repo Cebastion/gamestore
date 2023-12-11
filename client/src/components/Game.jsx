@@ -5,17 +5,14 @@ export default function Game(props) {
     return ( 
         <div className="product__block">
             <div className="block__image">
-                <img src={game.image} alt="" />
+                <img src={game.Image} alt="" />
             </div>
             <div className="block__title">
-                <span>{game.name}</span>
-            </div>
-            <div className="block__platform">
-                <span>{game.platform}</span>
+                <span>{game.Name}</span>
             </div>
             <div className="block__price-button">
                 <div className="block__price">
-                    <span>${game.price}</span>
+                    <span>${game.Price}</span>
                 </div>
             </div>
         </div>

@@ -1,20 +1,24 @@
 import express, { Request, Response } from 'express'
 import ParserService from './service/parser.service'
+import cors from "cors"
+import path from 'path'
 import fs from 'fs'
 
 const app = express()
 const port = 5500
+app.use(cors())
 
 app.get('/', async (req: Request, res: Response) => {
   const parserService = new ParserService()
-  const result = await parserService.GetGames(1)
-  const jsonFilePath = __dirname + '/json/games.json';
-  const jsonData = fs.readFileSync(jsonFilePath, 'utf-8');
-  const combinedData = {
-    result,
-    json: JSON.parse(jsonData)
-  };
-  res.send(combinedData);
+  const jsonFilePath = path.join(__dirname, '/json/games.json')
+  if (fs.existsSync(jsonFilePath)) {
+    res.sendFile(jsonFilePath)
+  } else {
+    await parserService.GetGames(1)
+    const jsonData: Record<string, any> = require(jsonFilePath)
+    const selectedData = req.query.filter ? jsonData[req.query.filter as string] : jsonData
+    res.json(selectedData)
+  }
 })
 
 app.listen(port, () => {

@@ -3,13 +3,13 @@ export default function List(props) {
     return ( 
         <div className="list__block">
             <div className="list__image">
-                <img src={game.image} alt="" />
+                <img src={game.Image} alt="" />
             </div>
             <div className="list__title">
-                <span>{game.name}</span>
+                <span>{game.Name}</span>
             </div>
             <div className="list__price">
-                <span>${game.price}</span>
+                <span>${game.Price}</span>
             </div>
         </div>
     );

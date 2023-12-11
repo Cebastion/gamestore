@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import gamelist from "./components/gameList";
 import mainImg from "./img/WoW.jpg";
 import Game from "./components/Game";
+import axios from 'axios';
 
 import bascket from "../src/img/bascket.svg";
 import favorite from "../src/img/favorite.svg";
@@ -16,9 +17,11 @@ function App () {
 
   useEffect(() => {
     axios.get('http://localhost:5500').then(res => {
-      setFilter(res.data)
+      setFilter(res.data.games)
+      console.log(res.data.games)
     })
-  }, [])
+    console.log(filterData)
+  }, [filterData])
 
   const [value, setValue] = useState('');
   const [values, setValues] = useState('');
@@ -201,7 +204,7 @@ function App () {
           <div className="product__row">
               {filterData.map(el => (
                 <div>
-                  <Game key={el.name} game={el}/>
+                  <Game key={el.Name} game={el}/>
                   <button className="block__button" onClick={() => AddToList(el)}>
                     <span>Buy</span>
                   </button>
