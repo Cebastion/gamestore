@@ -17,8 +17,8 @@ function App () {
 
   useEffect(() => {
     axios.get('http://localhost:5500').then(res => {
-      setFilter(res.data.games)
-      console.log(res.data.games)
+      setFilter(res.data.games.game)
+      console.log(res.data.games.game)
     })
     console.log(filterData)
   }, [filterData])

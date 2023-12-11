@@ -12,7 +12,7 @@ export default function Game(props) {
             </div>
             <div className="block__price-button">
                 <div className="block__price">
-                    <span>${game.Price}</span>
+                    <span>{game.Price}</span>
                 </div>
             </div>
         </div>
