@@ -1,5 +1,5 @@
 interface Game {
-    Image: string;
+    Image: string | Buffer;
     Name: string;
     Tag: string[];
     Price: string;

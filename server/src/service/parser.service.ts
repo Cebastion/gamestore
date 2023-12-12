@@ -16,18 +16,14 @@ export default class ParserService {
   }
 
   private async GetGenreGame(url: string): Promise<string[]> {
-    try {
-      if (url) {
-        const response = await axios.get(url)
-        if (response.status === 200) {
-          const $ = cheerio.load(response.data)
-          const genres = $(`div.details__content.table__row-content a`).map((index, element) => $(element).text().trim()).get()
-          const filteredGenres = genres.filter(genre => genre == 'Action' || genre == 'Adventure' || genre == 'Racing' || genre == 'Role-playing' || genre == 'Shooter' || genre == 'Simulation' || genre == 'Sports' || genre == 'Strategy')
-          return filteredGenres
-        }
+    if (url) {
+      const response = await axios.get(url)
+      if (response.status === 200) {
+        const $ = cheerio.load(response.data)
+        const genres = $(`div.details__content.table__row-content a`).map((index, element) => $(element).text().trim()).get()
+        const filteredGenres = genres.filter(genre => genre == 'Action' || genre == 'Adventure' || genre == 'Racing' || genre == 'Role-playing' || genre == 'Shooter' || genre == 'Simulation' || genre == 'Sports' || genre == 'Strategy')
+        return filteredGenres
       }
-    } catch (error) {
-      console.error("Error fetching genre:", error)
     }
     return []
   }
@@ -42,6 +38,18 @@ export default class ParserService {
     return games_json
   }
 
+  private async GetPhotoBuffer(url_img: string): Promise<{ buffer: Buffer | null, url_image_buffer_product: string }> {
+    if (url_img !== undefined && url_img !== '') {
+      const res = await axios.get(url_img, { responseType: 'arraybuffer' })
+      const buffer = Buffer.from(res.data)
+      console.log(buffer)
+
+      return { buffer, url_image_buffer_product: url_img }
+    } else {
+      return { buffer: null, url_image_buffer_product: '' }
+    }
+  }
+
   async GetGames(page: number) {
     if (page <= this.max_count_page) {
       await axios.get(this.URL + `?page=${page}`).then(async html => {
@@ -52,10 +60,12 @@ export default class ParserService {
             const name_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__info > div.product-tile__title.ng-star-inserted > product-title > span`).text()
             const price_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__info > div.product-tile__footer > div > product-price > price-value > span.final-value.ng-star-inserted`).text()
             const image_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__image-wrapper > store-picture > picture > source:nth-child(1)`).attr('srcset')
+            const image_buffer_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__image-wrapper > store-picture > picture > img`).attr('src')
             const url_image_product = image_product?.match(this.regex)?.[1]
+            const { buffer, url_image_buffer_product } = await this.GetPhotoBuffer(image_buffer_product || '')
             const tags = await this.GetGenreGame(link_page_product || '')
             let game: Game = {
-              Image: url_image_product || '',
+              Image: url_image_product || url_image_buffer_product || '',
               Name: name_product,
               Tag: tags,
               Price: price_product,
