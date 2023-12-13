@@ -38,15 +38,18 @@ export default class ParserService {
     return games_json
   }
 
-  private async GetPhotoBuffer(url_img: string): Promise<{ buffer: Buffer | null, url_image_buffer_product: string }> {
+  private async GetPhotoBlob(url_img: string): Promise<{ blob: Blob | null, url_image_blob_product: string }> {
     if (url_img !== undefined && url_img !== '') {
-      const res = await axios.get(url_img, { responseType: 'arraybuffer' })
-      const buffer = Buffer.from(res.data)
-      console.log(buffer)
+      const response = axios.get(url_img)
+      
+      
+      const blob = new Blob([url_img], {type: 'image/png'})
 
-      return { buffer, url_image_buffer_product: url_img }
+      const url = URL.createObjectURL(blob);
+
+      return { blob, url_image_blob_product: url }
     } else {
-      return { buffer: null, url_image_buffer_product: '' }
+      return { blob: null, url_image_blob_product: '' }
     }
   }
 
@@ -60,12 +63,12 @@ export default class ParserService {
             const name_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__info > div.product-tile__title.ng-star-inserted > product-title > span`).text()
             const price_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__info > div.product-tile__footer > div > product-price > price-value > span.final-value.ng-star-inserted`).text()
             const image_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__image-wrapper > store-picture > picture > source:nth-child(1)`).attr('srcset')
-            const image_buffer_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__image-wrapper > store-picture > picture > img`).attr('src')
+            const image_blob_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__image-wrapper > store-picture > picture > img`).attr('src')
             const url_image_product = image_product?.match(this.regex)?.[1]
-            const { buffer, url_image_buffer_product } = await this.GetPhotoBuffer(image_buffer_product || '')
+            const { blob, url_image_blob_product } = await this.GetPhotoBlob(image_blob_product || '')
             const tags = await this.GetGenreGame(link_page_product || '')
             let game: Game = {
-              Image: url_image_product || url_image_buffer_product || '',
+              Image: url_image_product || image_blob_product || '',
               Name: name_product,
               Tag: tags,
               Price: price_product,
