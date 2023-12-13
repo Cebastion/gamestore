@@ -7,7 +7,7 @@ import path from 'path'
 export default class ParserService {
   private URL = 'https://www.gog.com/en/games'
   private max_count_page = 186
-  private max_count_product = 48
+  private max_count_product = 12
   private regex = /([^\s,]+)/
   private game_list: Games = {
     games: {
@@ -38,20 +38,6 @@ export default class ParserService {
     return games_json
   }
 
-  private async GetPhotoBlob(url_img: string): Promise<{ blob: Blob | null, url_image_blob_product: string }> {
-    if (url_img !== undefined && url_img !== '') {
-      const response = axios.get(url_img)
-      
-      
-      const blob = new Blob([url_img], {type: 'image/png'})
-
-      const url = URL.createObjectURL(blob);
-
-      return { blob, url_image_blob_product: url }
-    } else {
-      return { blob: null, url_image_blob_product: '' }
-    }
-  }
 
   async GetGames(page: number) {
     if (page <= this.max_count_page) {
@@ -59,16 +45,15 @@ export default class ParserService {
         if (html.status === 200) {
           const $ = cheerio.load(html.data)
           for (let count_product = 1; count_product <= this.max_count_product; count_product++) {
-            const link_page_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a`).attr('href')
-            const name_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__info > div.product-tile__title.ng-star-inserted > product-title > span`).text()
-            const price_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__info > div.product-tile__footer > div > product-price > price-value > span.final-value.ng-star-inserted`).text()
-            const image_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__image-wrapper > store-picture > picture > source:nth-child(1)`).attr('srcset')
-            const image_blob_product = $(`#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a > div.product-tile__image-wrapper > store-picture > picture > img`).attr('src')
+            const card_product = `#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > paginated-products-grid > div > product-tile:nth-child(${count_product}) > a`
+            const link_page_product = $(`${card_product}`).attr('href')
+            const name_product = $(`${card_product} > div.product-tile__info > div.product-tile__title.ng-star-inserted > product-title > span`).text()
+            const price_product = $(`${card_product} > div.product-tile__info > div.product-tile__footer > div > product-price > price-value > span.final-value.ng-star-inserted`).text()
+            const image_product = $(`${card_product} > div.product-tile__image-wrapper > store-picture > picture > source:nth-child(1)`).attr('srcset')
             const url_image_product = image_product?.match(this.regex)?.[1]
-            const { blob, url_image_blob_product } = await this.GetPhotoBlob(image_blob_product || '')
             const tags = await this.GetGenreGame(link_page_product || '')
             let game: Game = {
-              Image: url_image_product || image_blob_product || '',
+              Image: url_image_product || '',
               Name: name_product,
               Tag: tags,
               Price: price_product,
