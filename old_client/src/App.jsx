@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import gamelist from "./components/gameList";
 import mainImg from "./img/WoW.jpg";
 import Game from "./components/Game";
 import axios from 'axios';
@@ -16,12 +15,10 @@ function App () {
   const [active, Setactive] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:5500').then(res => {
+    axios.get('http://localhost:5500/1').then(res => {
       setFilter(res.data.games.game)
-      console.log(res.data.games.game)
     })
-    console.log(filterData)
-  }, [filterData])
+  }, [])
 
   const [value, setValue] = useState('');
   const [values, setValues] = useState('');
@@ -75,24 +72,24 @@ function App () {
   }
   
     function GameTagFilter(tag){
-        let newgame = [...gamelist].filter(game => game.tag.find(el => el.includes(tag)) === tag);
+        let newgame = [...filterData].filter(game => game.tag.find(el => el.includes(tag)) === tag);
         setFilter(newgame)
   }
 
   function GamePlatformFilter(platform){
-    let newgame = [...gamelist].filter(game => game.platform.find(el => el.includes(platform)) === platform);
+    let newgame = [...filterData].filter(game => game.platform.find(el => el.includes(platform)) === platform);
     setFilter(newgame)
 }
 
   function GamePriceFilter(value, values){
     if(value === '' || values === ''){
-      newgame = [...gamelist];
+      newgame = [...filterData];
       setFilter(newgame);
     }
     else{
-      newgame = [...gamelist].filter(game => game.price >= value && game.price <= values);
+      newgame = [...filterData].filter(game => game.Price >= value && game.Price <= values);
       if(newgame.length === 0){
-          newgame = [...gamelist];
+          newgame = [...filterData];
           setFilter(newgame);
           Setactive(true);
           setValue('');

@@ -7,8 +7,8 @@ interface Game {
 
 interface Games {
     games: {
-        game: Game[]
-    };
+        game: Game
+    }[];
 }
 
 export { Game, Games }
