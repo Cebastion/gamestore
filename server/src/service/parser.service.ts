@@ -1,8 +1,6 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import fs from 'fs';
 import { Game, Games } from "../interface/game.interface";
-import path from 'path';
 
 export default class ParserService {
   private URL = 'https://www.gog.com/en/games';
@@ -24,16 +22,6 @@ export default class ParserService {
       }
     }
     return [];
-  }
-
-  private async WriteFileJson(game_list: Games) {
-    const games_json = JSON.stringify(game_list);
-    const directory = path.resolve(__dirname, '../json');
-    if (!fs.existsSync(directory)) {
-      fs.mkdirSync(directory, { recursive: true });
-    }
-    fs.writeFileSync(path.join(directory, 'games.json'), games_json);
-    return games_json;
   }
 
   async GetGames(page: number) {
@@ -80,7 +68,7 @@ export default class ParserService {
 
     await Promise.all(promises);
 
-    const game_json = await this.WriteFileJson(this.game_list);
-    return game_json;
+    const games_json = JSON.stringify(this.game_list);
+    return games_json;
   }
 }
