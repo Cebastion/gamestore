@@ -5,8 +5,9 @@ import React from 'react'
 import { IPage } from '@/interface/Page.interface'
 import ProductGame from './ProductGame'
 import { ILoader } from '@/interface/Loader.interface'
+import { IError } from '@/interface/Error.interface'
 
-const ListGame: FC<IGames & IPage & ILoader> = ({ games, pagination, Page, SetPage, Loader, SetLoader }) => {
+const ListGame: FC<IGames & IPage & ILoader & IError> = ({ games, pagination, Page, SetPage, Loader, SetLoader, Error, setError }) => {
   return (
     <div className="content__product">
       <div className="main__img">
@@ -25,7 +26,7 @@ const ListGame: FC<IGames & IPage & ILoader> = ({ games, pagination, Page, SetPa
             ))}
           </div>
         </>
-        : <div>Loading...</div>}
+        : Error ? <div>Error page</div>  : <div>Loading...</div>}
     </div>
   )
 }

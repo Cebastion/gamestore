@@ -9,6 +9,7 @@ const Main: FC = () => {
   const [GameList, setGameList] = useState<IGames>()
   const [Page, SetPage] = useState<number>(1)
   const [Loader, SetLoader] = useState<boolean>(false)
+  const [Error, setError] = useState<boolean>(false)
 
   async function FetchGame() {
     try {
@@ -17,6 +18,7 @@ const Main: FC = () => {
       setGameList(response)
     } catch (error) {
       console.log("Error: " + error)
+      setError(true)
     } finally {
       SetLoader(false)
     }
@@ -28,8 +30,8 @@ const Main: FC = () => {
   return (
     <div className="content">
       <div className="content__container">
-        <Filter setGameList={setGameList} Page={Page} SetPage={SetPage} SetLoader={SetLoader}/>
-        <ListGame games={GameList?.games} Loader={Loader} SetLoader={SetLoader} pagination={GameList?.pagination} Page={Page} SetPage={SetPage}/>
+        <Filter setGameList={setGameList} Page={Page} SetPage={SetPage} SetLoader={SetLoader} setError={setError}/>
+        <ListGame games={GameList?.games} Error={Error} setError={setError} Loader={Loader} SetLoader={SetLoader} pagination={GameList?.pagination} Page={Page} SetPage={SetPage}/>
       </div>
     </div>
   )
