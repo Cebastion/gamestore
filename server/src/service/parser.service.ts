@@ -7,7 +7,8 @@ export default class ParserService {
   private max_count_product = 12;
   private regex = /([^\s,]+)/;
   private game_list: Games = {
-    games: []
+    games: [],
+    pagination: 0
   };
 
   private async GetGenreGame(url: string): Promise<string[]> {
@@ -23,9 +24,9 @@ export default class ParserService {
     return []
   }
 
-  async GetGames(page:number, genre?: string[], minPrice?: number, maxPrice?: number) {
+  async GetGames(page:number, genre: string[], minPrice: number, maxPrice: number) {
 
-    const html = await axios.get(this.URL + `?page=${page}&genres=${genre}&priceRange=${minPrice + ',' + maxPrice}`)
+    const html = await axios.get(this.URL + `?genres=${genre}&priceRange=${minPrice + ',' + maxPrice}&page=${page}`)
 
     if (html.status !== 200) {
       console.error("Error parser")
@@ -36,8 +37,10 @@ export default class ParserService {
 
     const max_count_page = $('#Catalog > div > div.catalog__display-wrapper.catalog__grid-wrapper > div > small-pagination > div > button:nth-child(4) > span').text()
 
+    this.game_list.pagination = parseInt(max_count_page)
+
     if(page > parseInt(max_count_page)){
-      return "Error page"
+      return {message: "Error page"}
     }
     const promises: Promise<void>[] = []
 

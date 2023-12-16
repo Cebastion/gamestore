@@ -1,8 +1,8 @@
-import { Game } from '@/interface/Game.interface'
+import { IGame } from '@/interface/Game.interface'
 import { FC } from 'react'
 
 
-const ProductGame: FC<Game> = ({ game }) => {
+const ProductGame: FC<IGame> = ({ game}) => {
   return (
     <div className="product__block">
       <div className="block__image">

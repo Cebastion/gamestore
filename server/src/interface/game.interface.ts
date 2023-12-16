@@ -8,7 +8,8 @@ interface Game {
 interface Games {
     games: {
         game: Game
-    }[];
+    }[],
+    pagination: number
 }
 
 export { Game, Games }

@@ -1,4 +1,4 @@
-export interface Game {
+export interface IGame {
   game: {
     Image: string
     Name: string
@@ -7,6 +7,7 @@ export interface Game {
   }
 }
 
-export interface Games {
-  games: Game[]
+export interface IGames {
+  games?: IGame[],
+  pagination?: number
 }

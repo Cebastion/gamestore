@@ -9,11 +9,8 @@ const Header: FC = () => {
           <span>Game Store</span>
         </div>
         <div className="header__navigation">
-          <div className='navigation__bascket' >
+          <div className='navigation__favorite' >
             <Image src='/bascket.svg' alt="" className='' width={35} height={35} />
-          </div>
-          <div className="navigation__favorite">
-            <Image src='/favorite.svg' alt="" width={35} height={35}/>
           </div>
           <div className="navigation__profile">
             <Image src='/avatar.jpg' alt="" width={50} height={50}/>

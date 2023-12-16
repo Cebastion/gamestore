@@ -8,8 +8,8 @@ app.use(cors())
 
 app.get('/', async (req: Request, res: Response) => {
   const parserService = new ParserService()
-  const page = parseInt(req.params.page) || 1
-  const genres = (req.query.genre as string || '').split(',').filter(Boolean)
+  const page = parseInt(req.query.page as string) || 1
+  const genres = (req.query.genres as string || '').toLowerCase().split(',').filter(Boolean)
   const priceRange = req.query.priceRange as string || '0,1000';
 
   const [minPrice, maxPrice] = priceRange.split(',').map(parseFloat);
