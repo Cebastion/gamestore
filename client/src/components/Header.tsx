@@ -1,7 +1,10 @@
+'use client'
+import { IGames } from '@/interface/Game.interface'
 import Image from 'next/image'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
 const Header: FC = () => {
+  const [ListBuyGame, SetListBuyGame] = useState<IGames>()
   return (
     <header className='header'>
       <div className="header__container">

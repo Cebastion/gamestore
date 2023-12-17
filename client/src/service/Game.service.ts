@@ -6,12 +6,12 @@ export const GameService = {
     const {data} = await axios.get<IGames>(`http://localhost:5500/?page=${page}&genres=${genres}&priceRange=${priceRange}`)
     return data
   },
-  AddGameBascket(SelectGame: IGame) {
-    const NewArray: IGames = [];
-    return NewArray.games?.push(SelectGame)
+  AddGameBascket(SelectGame: IGame, array: IGames) {
+    array.games = array.games || []
+    return array.games.push(SelectGame)
   },
   DeleteGameBascket(SelectGame: IGame, array: IGames){
-    const NewArray = array.games?.filter(game => game.game !== SelectGame)
+    const NewArray = array.games?.filter(game => game.game.Name !== SelectGame.game.Name)
     return NewArray
   }
 }
