@@ -8,7 +8,7 @@ import { ILoader } from '@/interface/Loader.interface'
 import { IError } from '@/interface/Error.interface'
 import { IListBuyGame } from '@/interface/ListBuyGame.interface'
 
-const ListGame: FC<IGames & IPage & ILoader & IError & IListBuyGame> = ({ games, pagination, Page, SetPage, Loader, SetLoader, Error, setError, ListBuyGame, setListBuyGame }) => {
+const ListGame: FC<IGames & IPage & ILoader & IError & IListBuyGame> = ({ games, pagination, Page, SetPage, Loader, SetLoader, Error, SetError, ListBuyGame, setListBuyGame }) => {
 
   function NextPage(Page: number) {
     if(pagination !== undefined && Page <= pagination){

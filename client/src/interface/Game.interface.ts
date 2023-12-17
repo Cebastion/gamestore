@@ -7,7 +7,14 @@ export interface IGame {
   }
 }
 
+export interface IGameOne {
+  Image: string
+  Name: string
+  Tag: string[]
+  Price: string
+}
+
 export interface IGames {
-  games?: IGame[],
+  games?: (IGame | IGameOne)[],
   pagination?: number
 }

@@ -1,4 +1,4 @@
 export interface IError {
-  Error?: number[];
+  Error: boolean;
   SetError: React.Dispatch<React.SetStateAction<boolean>>;
 }

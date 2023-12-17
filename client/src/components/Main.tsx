@@ -32,8 +32,8 @@ const Main: FC<IListBuyGame> = ({ListBuyGame, setListBuyGame}) => {
   return (
     <div className="content">
       <div className="content__container">
-        <Filter setGameList={setGameList} Page={Page} SetPage={SetPage} SetLoader={SetLoader} setError={setError}/>
-        <ListGame ListBuyGame={ListBuyGame} setListBuyGame={setListBuyGame} games={GameList?.games} Error={Error} setError={setError} Loader={Loader} SetLoader={SetLoader} pagination={GameList?.pagination} Page={Page} SetPage={SetPage}/>
+        <Filter setGameList={setGameList} Page={Page} SetPage={SetPage} SetLoader={SetLoader} SetError={setError} Error={Error}/>
+        <ListGame ListBuyGame={ListBuyGame} setListBuyGame={setListBuyGame} games={GameList?.games} Error={Error} SetError={setError} Loader={Loader} SetLoader={SetLoader} pagination={GameList?.pagination} Page={Page} SetPage={SetPage}/>
       </div>
     </div>
   )

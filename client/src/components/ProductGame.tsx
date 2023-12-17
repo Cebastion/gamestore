@@ -1,13 +1,12 @@
-import { IGame, IGames } from '@/interface/Game.interface'
+import { IGame, IGameOne, IGames } from '@/interface/Game.interface'
 import { IListBuyGame } from '@/interface/ListBuyGame.interface'
 import { FC } from 'react'
 
 
-const ProductGame: FC<IGame & IListBuyGame> = ({ game, ListBuyGame, setListBuyGame }) => {
-  function AddBascket(SelectGame: IGame){
-    const updatedList = [...ListBuyGame, SelectGame]
-    setListBuyGame(updatedList)
-    console.log(ListBuyGame)
+const ProductGame: FC<IGame & IListBuyGame> = ({ game, ListBuyGame = { games: [] }, setListBuyGame }) => {
+  function AddBascket(SelectGame: IGameOne) {
+    let newArray: IGames = { games: [...(ListBuyGame.games || []), SelectGame] }
+    setListBuyGame(newArray)
   }
   return (
     <div className="product__block">
