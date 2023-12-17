@@ -1,8 +1,14 @@
-import { IGame } from '@/interface/Game.interface'
+import { IGame, IGames } from '@/interface/Game.interface'
+import { IListBuyGame } from '@/interface/ListBuyGame.interface'
 import { FC } from 'react'
 
 
-const ProductGame: FC<IGame> = ({ game}) => {
+const ProductGame: FC<IGame & IListBuyGame> = ({ game, ListBuyGame, setListBuyGame }) => {
+  function AddBascket(SelectGame: IGame){
+    const updatedList = [...ListBuyGame, SelectGame]
+    setListBuyGame(updatedList)
+    console.log(ListBuyGame)
+  }
   return (
     <div className="product__block">
       <div className="block__image">
@@ -15,7 +21,7 @@ const ProductGame: FC<IGame> = ({ game}) => {
         <div className="block__price">
           <span>{game.Price}</span>
         </div>
-        <button className="block__button">
+        <button className="block__button" onClick={() => AddBascket(game)}>
           <span>Buy</span>
         </button>
       </div>

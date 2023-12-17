@@ -6,8 +6,21 @@ import { IPage } from '@/interface/Page.interface'
 import ProductGame from './ProductGame'
 import { ILoader } from '@/interface/Loader.interface'
 import { IError } from '@/interface/Error.interface'
+import { IListBuyGame } from '@/interface/ListBuyGame.interface'
 
-const ListGame: FC<IGames & IPage & ILoader & IError> = ({ games, pagination, Page, SetPage, Loader, SetLoader, Error, setError }) => {
+const ListGame: FC<IGames & IPage & ILoader & IError & IListBuyGame> = ({ games, pagination, Page, SetPage, Loader, SetLoader, Error, setError, ListBuyGame, setListBuyGame }) => {
+
+  function NextPage(Page: number) {
+    if(pagination !== undefined && Page <= pagination){
+      SetPage(Page+1)
+    }
+  }
+  function PrevPage(Page: number) {
+    if(Page > 1){
+      SetPage(Page-1)
+    }
+  }
+
   return (
     <div className="content__product">
       <div className="main__img">
@@ -17,12 +30,12 @@ const ListGame: FC<IGames & IPage & ILoader & IError> = ({ games, pagination, Pa
         <>
           <div className="pagination">
             <span>{Page} / {pagination}</span>
-            <span onClick={() => SetPage(Page - 1)}>Prev</span>
-            <span onClick={() => SetPage(Page + 1)}>Next</span>
+            <span onClick={() => PrevPage(Page)}>Prev</span>
+            <span onClick={() => NextPage(Page)}>Next</span>
           </div>
           <div className="product__row">
             {games?.map(game => (
-              <ProductGame key={game.game.Name} game={game.game} />
+              <ProductGame key={game.game.Name} game={game.game} ListBuyGame={ListBuyGame} setListBuyGame={setListBuyGame}/>
             ))}
           </div>
         </>
