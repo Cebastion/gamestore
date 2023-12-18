@@ -17,6 +17,14 @@ app.get('/', async (req: Request, res: Response) => {
   res.send(DataJson)
 })
 
+app.get('/login', (req: Request, res: Response) => {
+
+})
+
+app.get('/signin', (req: Request, res: Response) => {
+  
+})
+
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
 })

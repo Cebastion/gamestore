@@ -7,7 +7,7 @@ import { IPage } from '@/interface/Page.interface'
 import { GameService } from '@/service/Game.service'
 import { FC, useEffect, useState } from 'react'
 
-const Filter: FC<IGameList & IPage & ILoader & IError> = ({Page, setGameList, SetLoader, setError}) => {
+const Filter: FC<IGameList & IPage & ILoader & IError> = ({Page, setGameList, SetLoader, SetError}) => {
   const list_genre: IGenres = {
     genres: [
       { name: 'Action' },
@@ -34,7 +34,7 @@ const Filter: FC<IGameList & IPage & ILoader & IError> = ({Page, setGameList, Se
       setGameList(response)
     } catch (error) {
       console.log("Error " + error)
-      setError(true)
+      SetError(true)
     } finally {
       SetLoader(false)
     }

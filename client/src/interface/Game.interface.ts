@@ -15,6 +15,6 @@ export interface IGameOne {
 }
 
 export interface IGames {
-  games?: (IGame | IGameOne)[],
+  games?: IGame[],
   pagination?: number
 }

@@ -1,8 +1,8 @@
 'use client'
-import { IGames } from '@/interface/Game.interface'
 import { IListBuyGame } from '@/interface/ListBuyGame.interface'
 import Image from 'next/image'
-import { FC, useState } from 'react'
+import { FC } from 'react'
+import ListBasket from './ListBacket'
 
 const Header: FC<IListBuyGame> = ({ListBuyGame, setListBuyGame}) => {
   return (
@@ -14,6 +14,7 @@ const Header: FC<IListBuyGame> = ({ListBuyGame, setListBuyGame}) => {
         <div className="header__navigation">
           <div className='navigation__favorite' >
             <Image src='/bascket.svg' alt="" className='' width={35} height={35} />
+            <ListBasket ListBuyGame={ListBuyGame} setListBuyGame={setListBuyGame}/>
           </div>
           <div className="navigation__profile">
             <Image src='/avatar.jpg' alt="" width={50} height={50}/>
@@ -23,5 +24,5 @@ const Header: FC<IListBuyGame> = ({ListBuyGame, setListBuyGame}) => {
     </header>
   )
 }
-
+//<ListBasket ListBuyGame={ListBuyGame} setListBuyGame={setListBuyGame}/>
 export default Header

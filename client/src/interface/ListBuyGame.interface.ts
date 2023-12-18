@@ -1,6 +1,6 @@
-import { IGames } from './Game.interface'
+import { IGame, IGameOne } from './Game.interface'
 
 export interface IListBuyGame {
-  ListBuyGame?: IGames;
-  setListBuyGame: React.Dispatch<React.SetStateAction<IGames | undefined>>;
+  ListBuyGame: IGameOne[];
+  setListBuyGame: React.Dispatch<React.SetStateAction<IGameOne[]>>;
 }

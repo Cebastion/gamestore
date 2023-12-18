@@ -1,15 +1,15 @@
-interface Game {
+interface IGame {
     Image: string;
     Name: string;
     Tag: string[];
     Price: string;
 }
 
-interface Games {
+interface IGames {
     games: {
-        game: Game
+        game: IGame
     }[],
     pagination: number
 }
 
-export { Game, Games }
+export { IGame, IGames }

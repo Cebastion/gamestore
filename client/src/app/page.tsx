@@ -2,11 +2,11 @@
 import RootLayout from './layout'
 import Header from '@/components/Header'
 import Main from '@/components/Main'
-import { IGames } from '@/interface/Game.interface'
+import { IGame, IGameOne } from '@/interface/Game.interface'
 import { useState } from 'react'
 
 export default function Home() {
-  const [ListBuyGame, SetListBuyGame] = useState<IGames>()
+  const [ListBuyGame, SetListBuyGame] = useState<IGameOne[]>([])
   return (
     <RootLayout>
       <Header ListBuyGame={ListBuyGame} setListBuyGame={SetListBuyGame}/>

@@ -1,12 +1,12 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
-import { Game, Games } from "../interface/game.interface"
+import { IGame, IGames } from "../interface/game.interface"
 
 export default class ParserService {
   private URL = 'https://www.gog.com/en/games';
   private max_count_product = 12;
   private regex = /([^\s,]+)/;
-  private game_list: Games = {
+  private game_list: IGames = {
     games: [],
     pagination: 0
   };
@@ -58,7 +58,7 @@ export default class ParserService {
         const image_product = $(`${card_product} > div.product-tile__image-wrapper > store-picture > picture > source:nth-child(1)`).attr('srcset')
         const url_image_product = image_product?.match(this.regex)?.[1]
         const tags = await this.GetGenreGame(link_page_product)
-        const game: Game = {
+        const game: IGame = {
           Image: url_image_product || '',
           Name: name_product,
           Tag: tags,
