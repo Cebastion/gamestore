@@ -18,6 +18,12 @@ export class UserService{
     fs.writeFileSync(directory + '/users.json', UserJson)
   }
 
+  private ReadUser(){
+    const directory = path.resolve(__dirname, '/users')
+    const User = fs.readFileSync(directory + '/users.json', 'utf-8')
+    return User
+  }
+
   constructor(name: string, password: string, email:string, games: IGames){
     this.name = name
     this.password = password
@@ -28,7 +34,7 @@ export class UserService{
   LogIn(User: IUser){
     const isAuthenticated = User.Email === this.email && User.Password === this.email
     if(isAuthenticated){
-
+      this.ReadUser()
     } else {
       return {message: ""}
     }

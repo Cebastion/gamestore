@@ -1,10 +1,15 @@
 import express, { Request, Response } from 'express'
 import ParserService from './service/parser.service'
 import cors from "cors"
+import { MongoDB } from './service/mongodb.service'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 
+const appDB = new MongoDB()
 const app = express()
 const port = 5500
 app.use(cors())
+dotenv.config()
 
 app.get('/', async (req: Request, res: Response) => {
   const parserService = new ParserService()
@@ -25,6 +30,6 @@ app.get('/signin', (req: Request, res: Response) => {
   
 })
 
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`App listening at http://localhost:${port}`)
 })
