@@ -1,8 +1,9 @@
 import { IActive } from '@/interface/Active.interface'
 import { FC } from 'react'
 import styles from './SignIn.module.scss'
+import { IUserActive } from '@/interface/UserActive.interface'
 
-const SignIn: FC<IActive> = ({SetActive, Active}) => {
+const SignIn: FC<IActive & IUserActive> = ({Active, SetActive, SetUserActive}) => {
   return (
     <form className={styles.form__block}>
       <div className={styles.form__title}>
