@@ -1,11 +1,10 @@
 import express, { Request, Response } from 'express'
 import ParserService from './service/parser.service'
 import cors from "cors"
-import { MongoDB } from './service/mongodb.service'
-import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import { UserService } from './service/user.service'
 
-const appDB = new MongoDB()
+const userService = new UserService()
 const app = express()
 const port = 5500
 app.use(cors())
@@ -22,12 +21,19 @@ app.get('/', async (req: Request, res: Response) => {
   res.send(DataJson)
 })
 
-app.get('/login', (req: Request, res: Response) => {
-
+app.post('/login', async (req: Request, res: Response) => {
+  const email = req.body.email
+  const password = req.body.password
+  const user = await userService.LogIn(email, password)
+  return user
 })
 
-app.get('/signin', (req: Request, res: Response) => {
-  
+app.post('/signin', async (req: Request, res: Response) => {
+  const name = req.body.name
+  const email = req.body.email
+  const password = req.body.password
+  const user = await userService.SignIn(name, email, password)
+  return user
 })
 
 app.listen(port, async () => {

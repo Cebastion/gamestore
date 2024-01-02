@@ -8,4 +8,4 @@ const UserSchema = new mongoose.Schema({
   games: [GameSchema],
 })
 
-const User = mongoose.model('User', UserSchema)
+export default UserSchema

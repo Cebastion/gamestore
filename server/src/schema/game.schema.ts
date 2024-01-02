@@ -7,6 +7,4 @@ const GameSchema = new mongoose.Schema({
   Price: String,
 })
 
-const Game = mongoose.model('Game', GameSchema)
-
 export default GameSchema
