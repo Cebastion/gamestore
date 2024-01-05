@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 export default function Home() {
   const [ListBuyGame, SetListBuyGame] = useState<IGameOne[]>([])
-  const [UserActive, SetUserActive] = useState<boolean>(false)
+  const [UserActive, SetUserActive] = useState<boolean>(true)
   return (
     <RootLayout>
       {UserActive ?
