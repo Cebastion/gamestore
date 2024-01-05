@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "ts-node src/server.ts"
+    "start": "ts-node src/server.ts",
+    "dev": "ts-node src/server.ts"
   },
   "keywords": [],
   "author": "",
