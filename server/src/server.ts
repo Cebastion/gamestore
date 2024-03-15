@@ -21,21 +21,6 @@ app.get('/', async (req: Request, res: Response) => {
   res.send(DataJson)
 })
 
-app.post('/login', async (req: Request, res: Response) => {
-  const email = req.body.email
-  const password = req.body.password
-  const user = await userService.LogIn(email, password)
-  return user
-})
-
-app.post('/signin', async (req: Request, res: Response) => {
-  const name = req.body.name
-  const email = req.body.email
-  const password = req.body.password
-  const user = await userService.SignIn(name, email, password)
-  return user
-})
-
 app.listen(port, async () => {
   console.log(`App listening at http://localhost:${port}`)
 })
