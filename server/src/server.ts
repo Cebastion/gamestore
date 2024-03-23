@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express'
 import ParserService from './service/parser.service'
 import cors from "cors"
 import dotenv from 'dotenv'
-import { UserService } from './service/user.service'
 
 const userService = new UserService()
 const app = express()
