@@ -3,7 +3,6 @@ import ParserService from './service/parser.service'
 import cors from "cors"
 import dotenv from 'dotenv'
 
-const userService = new UserService()
 const app = express()
 const port = 5500
 app.use(cors())
