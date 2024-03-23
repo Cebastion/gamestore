@@ -520,3 +520,45 @@ h1, h2, h3, h4, h5, h6 {
     right: 5px;
   }
 }
+
+
+.pagination{
+  display: inline-flex;
+  background: #1f2833;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 15px;
+  align-items: center;
+}
+
+.pagination__page{
+  color: #fbfbfb;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.pagination__prev{
+  margin-left: 20px;
+  margin-right: 10px;
+  background-color: #e58e27;
+  color: #fbfbfb;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.pagination__next {
+  cursor: pointer;
+  background-color: #e58e27;
+  color: #fbfbfb;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 10px;
+}

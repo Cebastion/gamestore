@@ -29,9 +29,9 @@ const ListGame: FC<IGames & IPage & ILoader & IError & IListBuyGame> = ({ games,
       {!Loader ?
         <>
           <div className="pagination">
-            <span>{Page} / {pagination}</span>
-            <span onClick={() => PrevPage(Page)}>Prev</span>
-            <span onClick={() => NextPage(Page)}>Next</span>
+            <span className='pagination__page'>{Page} / {pagination}</span>
+            <span className='pagination__prev' onClick={() => PrevPage(Page)}>Prev</span>
+            <span className='pagination__next' onClick={() => NextPage(Page)}>Next</span>
           </div>
           <div className="product__row">
             {games?.map(game => (
