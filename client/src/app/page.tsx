@@ -1,5 +1,4 @@
 'use client'
-import Authentication from '@/components/Authentication/Authentication'
 import RootLayout from './layout'
 import Header from '@/components/Header'
 import Main from '@/components/Main'
