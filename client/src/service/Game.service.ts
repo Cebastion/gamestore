@@ -1,5 +1,4 @@
 import { IGames } from '@/interface/Game.interface'
-import { IUser } from '@/interface/User.interface'
 import axios from 'axios'
 
 export const GameService = {
